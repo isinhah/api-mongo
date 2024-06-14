@@ -1,13 +1,10 @@
 package com.spring.nosql.dto.user;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.spring.nosql.dto.address.AddressRequestDTO;
-import lombok.*;
+import com.spring.nosql.dto.address.AddressResponseDTO;
 
-
-public record UserResponseDTO(Long id,
+public record UserResponseDTO(String id,
         String name,
         String email,
         String document,
-        AddressRequestDTO address) {
+        AddressResponseDTO address) {
 }
