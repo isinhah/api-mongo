@@ -1,6 +1,5 @@
 package com.spring.nosql.converter;
 
-import com.spring.nosql.dto.address.AddressResponseDTO;
 import com.spring.nosql.dto.user.UserResponseDTO;
 import com.spring.nosql.infrastructure.entity.AddressEntity;
 import com.spring.nosql.infrastructure.entity.UserEntity;
