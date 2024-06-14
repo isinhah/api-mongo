@@ -13,4 +13,12 @@ public class AddressService {
     public AddressEntity saveAddress(AddressEntity entity) {
         return addressRepository.save(entity);
     }
+
+    public AddressEntity findByUserId(String userId) {
+        return addressRepository.findByUserId(userId);
+    }
+
+    public void deleteByUserId(String userId) {
+        addressRepository.deleteByUserId(userId);
+    }
 }

@@ -10,6 +10,7 @@ import com.spring.nosql.infrastructure.entity.UserEntity;
 import com.spring.nosql.repositories.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import static org.springframework.util.Assert.notNull;
 
@@ -34,5 +35,23 @@ public class UserService {
         } catch (Exception e) {
             throw new BusinessException("Error saving user data");
         }
+    }
+
+    public UserResponseDTO findUserData(String email) {
+        try {
+            UserEntity entity = userRepository.findByEmail(email);
+            notNull(entity, "User not found");
+            AddressEntity addressEntity = addressService.findByUserId(entity.getId());
+            return userMapper.toUserResponseDTO(entity, addressEntity);
+        } catch (Exception e) {
+            throw new BusinessException("Error when fetching user data");
+        }
+    }
+
+    @Transactional
+    public void deleteUser(String email) {
+        UserEntity entity = userRepository.findByEmail(email);
+        userRepository.deleteByEmail(email);
+        addressService.deleteByUserId(entity.getId());
     }
 }
